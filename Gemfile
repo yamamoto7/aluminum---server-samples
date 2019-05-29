@@ -11,7 +11,7 @@ gem 'mysql2', '0.5.2'
 # Server
 gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.5'
-
+gem 'actioncable'
 
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', '>= 1.1.0', require: false
