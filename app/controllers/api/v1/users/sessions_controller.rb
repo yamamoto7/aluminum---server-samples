@@ -10,7 +10,7 @@ class Api::V1::Users::SessionsController < ApplicationController
       if @user.update_access_token! then
         sign_in :user, @user
         # ここヘッダーにトークン混ぜるよ
-        response.headers['token'] = @user.token
+        response.headers['token'] = @user.access_token
         response.headers['sign_info'] = 'user'
         render json: @user
       else
@@ -25,7 +25,7 @@ class Api::V1::Users::SessionsController < ApplicationController
 
   def destroy
       authenticate_user_from_token!
-      @current_user.token = 'broken_token'
+      @current_user.access_token = 'broken_token'
       if @current_user.update(token_breaker)
         render :json => {success: true}
       else
