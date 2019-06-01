@@ -6,18 +6,18 @@ class ApplicationController < ActionController::API
       response.headers['sign_info'] = 'none'
     end
   end
-
-  private
+  #
   # get token from request header
   def user_token_auth
     token = request.headers['token']
     if token
-      @current_user = authenticate_user(token)
+      current_user = authenticate_user(token)
     else
       return false
     end
   end
 
+  private
   # check token
   def authenticate_user token
     unless token.include?(':u')
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::API
 
   # error: invalid token
   def authenticate_error
-    render json: { error: 'devise.failure.unauthenticated' }, status: 401
+    render json: { error: 'devise.failure.unauthenticated' }, status: :unauthorized
   end
 
 end
