@@ -20,6 +20,7 @@ class Api::V1::Users::SessionsController < ApplicationController
     else
       invalid_password_or_email
     end
+    # rendered at view/app/api/v1/users/sessions/create.json.jbuilder
   end
 
 
@@ -41,6 +42,6 @@ class Api::V1::Users::SessionsController < ApplicationController
   end
   def invalid_password_or_email
     warden.custom_failure!
-    render json: { error: 'メールアドレスか、パスワードが間違っています。' }, status: :accepted
+    render json: { error: 'メールアドレスか、パスワードが間違っています。' }, status: :bad_request
   end
 end
