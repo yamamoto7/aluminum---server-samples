@@ -12,6 +12,7 @@ gem 'mysql2', '0.5.2'
 gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.6'
+gem 'actioncable'
 
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', '>= 1.1.0', require: false
