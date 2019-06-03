@@ -10,6 +10,9 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def render_success(message = 'success')
+      render json: {result: message}
+  end
   private
   # check token
   def authenticate_user(token)
