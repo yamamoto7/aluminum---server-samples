@@ -1,26 +1,21 @@
 class ApplicationController < ActionController::API
   # get token from request header
-  def user_token_auth
+  def get_user_from_token
     token = request.headers['token']
     if token
-      @current_user = authenticate_user(token)
+      @current_auth = authenticate_user(token)
     else
-      return false
+      authenticate_error
+      return
     end
   end
 
   private
   # check token
   def authenticate_user(token)
-    unless token.include?(':u')
-      authenticate_error
-      return
-    end
-
-    user_id = token.split(':u').first
-    user = Auth.find_by(id: user_id)
-    if user && Devise.secure_compare(user.token, token)
-      return user
+    auth = Auth.find_or_create_by(token: token)
+    if auth
+      return auth
     else
       authenticate_error
       return
