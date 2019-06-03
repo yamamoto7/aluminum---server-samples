@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
         resources :posts
       end
+      # 投稿関連
+      resources :posts
     end
   end
 end
