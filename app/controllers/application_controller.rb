@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     if token
       current_user = authenticate_user(token)
     else
-      return false
+      authenticate_error
     end
   end
 
